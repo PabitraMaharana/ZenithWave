@@ -265,16 +265,17 @@ h6 {
           <div class="logo">
             <img src="{{url_for('static', filename = 'indexpage/images/logo.png')}}" alt="Sluralpright" />
           </div>
-          <form>
+          <form method="POST" action="">
+            {{form.hidden_tag()}}
             <div>
               <label>Email</label>
-              <input type="text" class="text-input"/>
+              {{ form.username(class="text-input") }} <!-- Add class="text-input" to apply the same CSS -->
             </div>
             <div>
               <label>Password</label>
-              <input type="password" class="text-input"/>
+              {{ form.password(class="text-input") }} <!-- Add class="text-input" to apply the same CSS -->
             </div>
-            <button type="submit" class="primary-btn">Sign In</button>
+            {{ form.submit(class="primary-btn") }} <!-- Add class="primary-btn" to apply the same CSS -->
           </form>
           <div class="links">
             <a href="#">Forgot Password</a>
@@ -285,7 +286,7 @@ h6 {
             <span>OR</span>
             <hr class="bar" />
           </div>
-          <a href="#" class="secondary-btn">Create an account</a>
+          <a href="{{ url_for('signup') }}" class="secondary-btn">Create an account</a>
         </div>
         <footer id="main-footer">
           <div>

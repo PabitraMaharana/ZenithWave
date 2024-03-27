@@ -263,20 +263,17 @@ h6 {
           <div class="logo">
             <img src="{{url_for('static', filename = 'indexpage/images/logo.png')}}" alt="Sluralpright" />
           </div>
-          <form>
+          <form method="POST" action="">
+            {{form.hidden_tag()}}
             <div>
-              <label>Email or username</label>
-              <input type="text" class="text-input" />
+              <label>Email</label>
+              {{ form.username(class="text-input") }} <!-- Add class="text-input" to apply the same CSS -->
             </div>
             <div>
-              <label>Create Password</label>
-              <input type="password" class="text-input" />
+              <label>Password</label>
+              {{ form.password(class="text-input") }} <!-- Add class="text-input" to apply the same CSS -->
             </div>
-            <div>
-                <label>Confirm Password</label>
-                <input type="password" class="text-input" />
-            </div>
-            <button type="submit" class="primary-btn">Sign In</button>
+            {{ form.submit(class="primary-btn") }} <!-- Add class="primary-btn" to apply the same CSS -->
           </form>
           <div class="links">
             <a href="#">Sign in with company or school</a>
@@ -286,7 +283,7 @@ h6 {
             <span>OR</span>
             <hr class="bar" />
           </div>
-          <a href="#" class="secondary-btn">Already have an account Sign In</a>
+          <a href="{{ url_for('signin') }}" class="secondary-btn">Already have an account Sign In</a>
         </div>
         <footer id="main-footer">
           <div>
