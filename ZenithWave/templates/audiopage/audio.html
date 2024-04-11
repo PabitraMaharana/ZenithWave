@@ -139,7 +139,7 @@ div.wrapper:after{
 
 .music-cover{
   height:42.5%;
-  background:#003731;
+  background:#220037;
   box-shadow:inset 0px 0px 225px rgba(0,0,0,0.3);
   text-align:center;
   overflow:hidden;
@@ -156,11 +156,11 @@ div.wrapper:after{
 .album-controls{
   position:relative;
   height:42.5%;
-  background:#003731;
+  background:#260037;
   border-top:2px solid rgba(255,255,255,0.2);
   text-align:center;
   overflow:hidden;
-  box-shadow:inset 0px 0px 215px 50px #016a5f;
+  box-shadow:inset 0px 0px 215px 50px #45016a;
 }
 
 .album-img{
@@ -415,21 +415,21 @@ h1#profile-name-header
     <div class="navigation" id="upper">
         <ul>
             <li>
-                <a href="{{ url_for('home') }}">
+                <a href="{{ url_for('homeMain') }}">
                     <i class="fa-solid fa-home"></i>
                     <span>Home</span>
                 </a> 
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ url_for('videohome') }}">
                     <i class="fa fa-search"></i>
                     <span>Search</span>
                 </a> 
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ url_for('dash') }}">
                     <i class="fa fas fa-book"></i>
                     <span>Your library</span>
                 </a> 
@@ -474,7 +474,7 @@ h1#profile-name-header
           <ul>
               <li><a href="#">Premium</a></li>
               <li><a href="#">Support</a></li>
-              <li><a href="#">Download</a></li>
+              <li><a href="{{ url_for('chatpage') }}">ZenithAI</a></li>
               <li class="divider">|</li>
           </ul>
           <a href="{{ url_for('dash') }}"><button type="button">Dashboard</button></a>
@@ -486,10 +486,10 @@ h1#profile-name-header
 
 <div class="wrapper">
   <div class="music music-cover">
-    <img src="https://codefrog.space/cp/Kaabil_Movie_Poster.jpg" alt="" class="cover-img" />
+    <img src="{{url_for('static', filename = 'indexpage/images/mainlogo.png')}}" alt="" class="cover-img" />
   </div>
   <div class="music album-controls">
-    <img src="https://codefrog.space/cp/Kaabil_Movie_Poster.jpg" alt="" class="album-img" />
+    <img src="{{url_for('static', filename = 'indexpage/images/mainlogo.png')}}" alt="" class="album-img" />
     <div class="album-info">
       <span class="album-title">Kaabil</span>
       <span class="song-title">Kaabil Hoon</span>
@@ -513,7 +513,7 @@ h1#profile-name-header
   </div>
 </div>
 <audio controls id="music-player" preload="auto">
-  <source src="http://codefrog.in/ui/songs/Kaabil-Hoon.mp3" type="audio/mpeg">
+  <source src="../../static/uploads/Lean On - Major Lazer n DJ Snake(PagalWorld).mp3" type="audio/mpeg">
 Your browser does not support the audio element.
 </audio>
 
@@ -628,6 +628,14 @@ gtag('js', new Date());
 
 gtag('config', 'UA-109680738-1');
 //# sourceURL=pen.js
+    </script>
+    <script>
+      $(".button-container-play .play").on("click", function() {
+    var audioSrc = $(this).data("src");
+    $("#music-player").attr("src", audioSrc);
+    $("#music-player")[0].load();
+    $("#music-player")[0].play();
+});
     </script>
 
   

@@ -200,14 +200,14 @@ p { margin: 0; }
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{ url_for('videohome') }}">
                         <i class="fa fa-search"></i>
                         <span>Search</span>
                     </a> 
                 </li>
 
                 <li>
-                    <a href="{{ url_for('list') }}">
+                    <a href="{{ url_for('dash') }}">
                         <i class="fa fas fa-book"></i>
                         <span>Your library</span>
                     </a> 
@@ -251,7 +251,8 @@ p { margin: 0; }
                 <ul>
                     <li><a href="#">Videos</a></li>
                     <li><a href="#">Podcasts</a></li>
-                    <li><a href="#">Download</a></li>
+                    <li><a href="{{ url_for('fileupload') }}">Upload</a></li>
+                    <li><a href="{{ url_for('chatpage') }}">ZenithAI</a></li>
                     <li class="divider">|</li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 </ul>
@@ -537,8 +538,8 @@ p { margin: 0; }
      
      <a href="#" class="chat-close">x</a>
  
-     <h4>ChatBot</h4>
- n 
+     <h4>ZenithAI</h4>
+ 
    </header>
  
    <div class="chat">

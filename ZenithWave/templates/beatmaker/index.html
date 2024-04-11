@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>beatMaker</title>
+
+
+    <link rel="stylesheet" href="static/indexpage/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://kit.fontawesome.com/9d4aef4753.css" crossorigin="anonymous">
+    <link rel="canonical" href="https://codepen.io/mehmetmert/pen/zYZRKZ">
+    <script src="https://kit.fontawesome.com/9d4aef4753.js" crossorigin="anonymous"></script>
+
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='beatmaker/img/favicon.png') }}" type="image/x-icon">
+
+    <!-- css file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='beatmaker/styles/styles.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='beatmaker/styles/reset.css') }}" />
+ 
+    <!-- font awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+    />
+
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+
+    <div class="sidebar">
+        
+      <div class="logo">
+          <a href="#"><img src="{{url_for('static', filename = 'indexpage/images/logo.png')}}" alt="logo"></a>
+      </div>
+      <div class="navigation" id="upper">
+          <ul>
+              <li>
+                  <a href="{{ url_for('homeMain') }}">
+                      <i class="fa-solid fa-home"></i>
+                      <span>Home</span>
+                  </a> 
+              </li>
+
+              <li>
+                  <a href="{{ url_for('videohome') }}">
+                      <i class="fa fa-search"></i>
+                      <span>Search</span>
+                  </a> 
+              </li>
+
+              <li>
+                  <a href="{{ url_for('dash') }}">
+                      <i class="fa fas fa-book"></i>
+                      <span>Your library</span>
+                  </a> 
+              </li>
+          </ul>
+      </div>
+
+      <div class="navigation">
+          <ul>
+              <li>
+                  <a href="#">
+                      <i class="fa fas fa-plus-square"></i>
+                      <span>Create Playlist</span>
+                  </a> 
+              </li>
+
+              <li>
+                  <a href="{{ url_for('list') }}">
+                      <i class="fa fas fa-heart"></i>
+                      <span>Liked Podcasts</span>
+                  </a> 
+              </li>
+          </ul>
+      </div>
+
+      <div class="policies">
+          <ul>
+              <li><a href="#">Cookies</a></li>
+              <li><a href="#">Privacy</a></li>
+          </ul>
+      </div>
+  </div>
+
+  <div class="main-container" style="margin-bottom: 0px; margin-left: 190px">
+      <div class="topbar">
+          <div class="prev-next-buttons">
+              <button type="button" class="fa fas fa-chevron-left"></button>
+              <button type="button" class="fa fas fa-chevron-right"></button>
+          </div>
+          <div class="navbar">
+              <ul>
+                  <li><a href="#">Videos</a></li>
+                  <li><a href="#">Podcasts</a></li>
+                  <li><a href="{{ url_for('fileupload') }}">Upload</a></li>
+                  <li><a href="{{ url_for('chatpage') }}">ZenithAI</a></li>
+                  <li class="divider">|</li>
+                  <li><a href="{{ url_for('logout') }}">Logout</a></li>
+              </ul>
+              <a href="{{ url_for('dash') }}"><button type="button">Dashboard</button></a>
+          </div>
+      </div>
+  </div>
+
+    <div class="sequencer">
+      <div class="kick-track">
+        <div class="track-control">
+          <h1><i class="fas fa-drum"></i> 1</h1>
+
+          <button data-track="kick" class="mute kick-volume">
+            <i class="fas fa-volume-up"></i>
+          </button>
+
+          <select name="kick-select" id="kick-select">
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/kick-acoustic01.wav') }}">
+              Kick acoustic 01
+            </option>
+
+            <option value="./assets/sounds/kick-acoustic02.wav">
+              Kick acoustic 02
+            </option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/kick-deep.wav') }}">Kick deep</option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/kick-softy.wav') }}">Kick softy</option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/kick-heavy.wav') }}">Kick heavy</option>
+          </select>
+        </div>
+
+        <div class="kick">
+          <div class="pad kick-pad b0"></div>
+          <div class="pad kick-pad b1"></div>
+          <div class="pad kick-pad b2"></div>
+          <div class="pad kick-pad b3"></div>
+          <div class="pad kick-pad b4"></div>
+          <div class="pad kick-pad b5"></div>
+          <div class="pad kick-pad b6"></div>
+          <div class="pad kick-pad b7"></div>
+          <div class="pad kick-pad b8"></div>
+          <div class="pad kick-pad b9"></div>
+          <div class="pad kick-pad b10"></div>
+          <div class="pad kick-pad b11"></div>
+          <div class="pad kick-pad b12"></div>
+          <div class="pad kick-pad b13"></div>
+        </div>
+      </div>
+
+      <div class="snare-track">
+        <div class="track-control">
+          <h1><i class="fas fa-drum"></i> 2</h1>
+
+          <button data-track="snare" class="mute snare-volume">
+            <i class="fas fa-volume-up"></i>
+          </button>
+
+          <select name="snare-select" id="snare-select">
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-acoustic01.wav') }}">
+              snare acoustic 01
+            </option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-acoustic02.wav') }}">
+              snare acoustic 02
+            </option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-808.wav') }}">snare 808</option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-big.wav') }}">snare big</option>
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-lofi01.wav') }}">
+              snare lofi 01
+            </option>
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-lofi02.wav') }}">
+              snare lofi 02
+            </option>
+          </select>
+        </div>
+
+        <div class="snare">
+          <div class="pad snare-pad b0"></div>
+          <div class="pad snare-pad b1"></div>
+          <div class="pad snare-pad b2"></div>
+          <div class="pad snare-pad b3"></div>
+          <div class="pad snare-pad b4"></div>
+          <div class="pad snare-pad b5"></div>
+          <div class="pad snare-pad b6"></div>
+          <div class="pad snare-pad b7"></div>
+          <div class="pad snare-pad b8"></div>
+          <div class="pad snare-pad b9"></div>
+          <div class="pad snare-pad b10"></div>
+          <div class="pad snare-pad b11"></div>
+          <div class="pad snare-pad b12"></div>
+          <div class="pad snare-pad b13"></div>
+        </div>
+      </div>
+
+      <div class="hihat-track">
+        <div class="track-control">
+          <h1><i class="fas fa-drum"></i> 3</h1>
+
+          <button data-track="hihat" class="mute hihat-volume">
+            <i class="fas fa-volume-up"></i>
+          </button>
+
+          <select name="hihat-select" id="hihat-select">
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-acoustic01.wav') }}">
+              hihat acoustic 01
+            </option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-acoustic02.wav') }}">
+              hihat acoustic 02
+            </option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-808.wav') }}">hihat 808</option>
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-plain.wav') }}">hihat plain</option>
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-electro.wav') }}">hihat electro</option>
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-digital.wav') }}">hihat digital</option>
+          </select>
+        </div>
+
+        <div class="hihat">
+          <div class="pad hihat-pad b0"></div>
+          <div class="pad hihat-pad b1"></div>
+          <div class="pad hihat-pad b2"></div>
+          <div class="pad hihat-pad b3"></div>
+          <div class="pad hihat-pad b4"></div>
+          <div class="pad hihat-pad b5"></div>
+          <div class="pad hihat-pad b6"></div>
+          <div class="pad hihat-pad b7"></div>
+          <div class="pad hihat-pad b8"></div>
+          <div class="pad hihat-pad b9"></div>
+          <div class="pad hihat-pad b10"></div>
+          <div class="pad hihat-pad b11"></div>
+          <div class="pad hihat-pad b12"></div>
+          <div class="pad hihat-pad b13"></div>
+        </div>
+      </div>
+
+      <div class="kick-track">
+        <div class="track-control">
+          <h1><i class="fas fa-drum"></i> 4</h1>
+
+          <button data-track="kick" class="mute kick-volume">
+            <i class="fas fa-volume-up"></i>
+          </button>
+
+          <select name="kick-select" id="kick-select">
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/kick-acoustic01.wav') }}">
+              Kick acoustic 01
+            </option>
+
+            <option value="./assets/sounds/kick-acoustic02.wav">
+              Kick acoustic 02
+            </option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/kick-deep.wav') }}">Kick deep</option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/kick-softy.wav') }}">Kick softy</option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/kick-heavy.wav') }}">Kick heavy</option>
+          </select>
+        </div>
+
+        <div class="kick">
+          <div class="pad kick-pad b0"></div>
+          <div class="pad kick-pad b1"></div>
+          <div class="pad kick-pad b2"></div>
+          <div class="pad kick-pad b3"></div>
+          <div class="pad kick-pad b4"></div>
+          <div class="pad kick-pad b5"></div>
+          <div class="pad kick-pad b6"></div>
+          <div class="pad kick-pad b7"></div>
+          <div class="pad kick-pad b8"></div>
+          <div class="pad kick-pad b9"></div>
+          <div class="pad kick-pad b10"></div>
+          <div class="pad kick-pad b11"></div>
+          <div class="pad kick-pad b12"></div>
+          <div class="pad kick-pad b13"></div>
+        </div>
+      </div>
+
+      <div class="snare-track">
+        <div class="track-control">
+          <h1><i class="fas fa-drum"></i> 5</h1>
+
+          <button data-track="snare" class="mute snare-volume">
+            <i class="fas fa-volume-up"></i>
+          </button>
+
+          <select name="snare-select" id="snare-select">
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-acoustic01.wav') }}">
+              snare acoustic 01
+            </option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-acoustic02.wav') }}">
+              snare acoustic 02
+            </option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-808.wav') }}">snare 808</option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-big.wav') }}">snare big</option>
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-lofi01.wav') }}">
+              snare lofi 01
+            </option>
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/snare-lofi02.wav') }}">
+              snare lofi 02
+            </option>
+          </select>
+        </div>
+
+        <div class="snare">
+          <div class="pad snare-pad b0"></div>
+          <div class="pad snare-pad b1"></div>
+          <div class="pad snare-pad b2"></div>
+          <div class="pad snare-pad b3"></div>
+          <div class="pad snare-pad b4"></div>
+          <div class="pad snare-pad b5"></div>
+          <div class="pad snare-pad b6"></div>
+          <div class="pad snare-pad b7"></div>
+          <div class="pad snare-pad b8"></div>
+          <div class="pad snare-pad b9"></div>
+          <div class="pad snare-pad b10"></div>
+          <div class="pad snare-pad b11"></div>
+          <div class="pad snare-pad b12"></div>
+          <div class="pad snare-pad b13"></div>
+        </div>
+      </div>
+
+      <div class="hihat-track">
+        <div class="track-control">
+          <h1><i class="fas fa-drum"></i> 6</h1>
+
+          <button data-track="hihat" class="mute hihat-volume">
+            <i class="fas fa-volume-up"></i>
+          </button>
+
+          <select name="hihat-select" id="hihat-select">
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-acoustic01.wav') }}">
+              hihat acoustic 01
+            </option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-acoustic02.wav') }}">
+              hihat acoustic 02
+            </option>
+
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-808.wav') }}">hihat 808</option>
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-plain.wav') }}">hihat plain</option>
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-electro.wav') }}">hihat electro</option>
+            <option value="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-digital.wav') }}">hihat digital</option>
+          </select>
+        </div>
+
+        <div class="hihat">
+          <div class="pad hihat-pad b0"></div>
+          <div class="pad hihat-pad b1"></div>
+          <div class="pad hihat-pad b2"></div>
+          <div class="pad hihat-pad b3"></div>
+          <div class="pad hihat-pad b4"></div>
+          <div class="pad hihat-pad b5"></div>
+          <div class="pad hihat-pad b6"></div>
+          <div class="pad hihat-pad b7"></div>
+          <div class="pad hihat-pad b8"></div>
+          <div class="pad hihat-pad b9"></div>
+          <div class="pad hihat-pad b10"></div>
+          <div class="pad hihat-pad b11"></div>
+          <div class="pad hihat-pad b12"></div>
+          <div class="pad hihat-pad b13"></div>
+        </div>
+      </div>
+    </div>
+
+    <audio class="kick-sound" src="{{ url_for('static', filename='beatmaker/assets/sounds/kick-acoustic01.wav') }}"></audio>
+    <audio class="snare-sound" src="{{ url_for('static', filename='beatmaker/assets/sounds/snare-acoustic01.wav') }}"></audio>
+    <audio class="hihat-sound" src="{{ url_for('static', filename='beatmaker/assets/sounds/hihat-acoustic01.wav') }}"></audio>
+
+    </div>
+
+    <nav class="controls-bar">
+      <div class="sequencer-controls">
+          <button class="play"><i class="fas fa-play"></i></button>
+        <div class="tempo">
+          <h2><span class="tempo-number">140</span> BPM</h2>
+          <input
+            type="range"
+            class="tempo-slider"
+            min="30"
+            max="240"
+            value="140"
+          />
+        </div>
+        <button class="reset"><i class="fas fa-trash"></i></button>    
+        <a href="" target="_blank"><button class="github-link"><i class="fab fa-github-alt"></i></button></a> 
+    </nav>
+
+    <!-- javascript file -->
+    <script src="{{ url_for('static', filename='beatmaker/assets/script.js') }}"></script>
+  </body>
+</html>

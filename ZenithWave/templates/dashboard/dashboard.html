@@ -4,398 +4,302 @@
 
 <head>
   <meta charset="UTF-8">
-
+  
     <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
 
 
   <title>Dashboard</title>
-  
 
-    <link rel="canonical" href="https://codepen.io/themustafaomar/pen/jLMPKm">
-  
-  
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://unicons.iconscout.com/release/v3.0.6/css/line.css'>
+    <link rel="canonical" href="https://codepen.io/olsiodobashi/pen/BLBdgr">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,600" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/jquery.selectric/1.10.1/selectric.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
   
 <style>
-@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet';
-
-:root {
-	--dk-gray-100: #F3F4F6;
-	--dk-gray-200: #E5E7EB;
-	--dk-gray-300: #D1D5DB;
-	--dk-gray-400: #9CA3AF;
-	--dk-gray-500: #6B7280;
-	--dk-gray-600: #4B5563;
-	--dk-gray-700: #374151;
-	--dk-gray-800: #1F2937;
-	--dk-gray-900: #111827;
-	--dk-dark-bg: #313348;
-	--dk-darker-bg: #2a2b3d;
-	--navbar-bg-color: #6f6486;
-	--sidebar-bg-color: #252636;
-	--sidebar-width: 250px;
-}
-
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
+@import "https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/dashboard.scss";
 body {
-	font-family: 'Inter', sans-serif;
-	background-color: var(--dk-darker-bg);
-	font-size: .925rem;
+  background-color: #1b2431;
+  color: #202020;
+  font-family: "Montserrat", "Helvetica", "Open Sans", "Arial";
+  font-size: 15px;
 }
 
-#wrapper {
-	margin-left: var(--sidebar-width);
-	transition: all .3s ease-in-out;
+a:hover {
+  text-decoration: none;
+}
+audio {
+    filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
+    width: 200px;
+    height: 25px;
 }
 
-#wrapper.fullwidth {
-	margin-left: 0;
+p,
+figure {
+  margin: 0;
+  padding: 0;
 }
-
-
-
-/** --------------------------------
- -- Sidebar
--------------------------------- */
-.sidebar {
-	background-color: var(--sidebar-bg-color);
-	width: var(--sidebar-width);
-	transition: all .3s ease-in-out;
-	transform: translateX(0);
-	z-index: 9999999
-}
-
-.sidebar .close-aside {
-	position: absolute;
-	top: 7px;
-	right: 7px;
-	cursor: pointer;
-	color: #EEE;
-}
-
-.sidebar .sidebar-header {
-	border-bottom: 1px solid #2a2b3c
-}
-
-.sidebar .sidebar-header h5 a {
-	color: var(--dk-gray-300)
-}
-
-.sidebar .sidebar-header p {
-	color: var(--dk-gray-400);
-	font-size: .825rem;
-}
-
-.sidebar .search .form-control ~ i {
-	color: #2b2f3a;
-	right: 40px;
-	top: 22px;
-}
-
-.sidebar > ul > li {
-	padding: .7rem 1.75rem;
-}
-
-.sidebar ul > li > a {
-	color: var(--dk-gray-400);
-	text-decoration: none;
-}
-
-/* Start numbers */
-.sidebar ul > li > a > .num {
-	line-height: 0;
-	border-radius: 3px;
-	font-size: 14px;
-	padding: 0px 5px
-}
-
-.sidebar ul > li > i {
-	font-size: 18px;
-	margin-right: .7rem;
-	color: var(--dk-gray-500);
-}
-
-.sidebar ul > li.has-dropdown > a:after {
-	content: '\eb3a';
-	font-family: unicons-line;
-	font-size: 1rem;
-	line-height: 1.8;
-	float: right;
-	color: var(--dk-gray-500);
-	transition: all .3s ease-in-out;
-}
-
-.sidebar ul .opened > a:after {
-	transform: rotate(-90deg);
-}
-
-/* Start dropdown menu */
-.sidebar ul .sidebar-dropdown {
-	padding-top: 10px;
-	padding-left: 30px;
-	display: none;
-}
-.sidebar ul .sidebar-dropdown.active {
-	display: block;
-}
-
-.sidebar ul .sidebar-dropdown > li > a {
-  font-size: .85rem;
-	padding: .5rem 0;
-	display: block;
-}
-/* End dropdown menu */
-
-.show-sidebar {
-	transform: translateX(-270px);
-}
-
-@media (max-width: 767px) {
-	.sidebar ul > li {
-		padding-top: 12px;
-		padding-bottom: 12px;
-	}
-
-	.sidebar .search {
-		padding: 10px 0 10px 30px
-	}
-}
-
-
-
-
-/** --------------------------------
- -- welcome
--------------------------------- */
-.welcome {
-	color: var(--dk-gray-300);
-}
-
-.welcome .content {
-	background-color: var(--dk-dark-bg);
-}
-
-.welcome p {
-	color: var(--dk-gray-400);
-}
-
-
-
-
-/** --------------------------------
- -- Statistics
--------------------------------- */
-.statistics {
-	color: var(--dk-gray-200);
-}
-
-.statistics .box {
-	background-color: var(--dk-dark-bg);
-}
-
-.statistics .box i {
-	width: 60px;
-	height: 60px;
-	line-height: 60px;
-}
-
-.statistics .box p {
-	color: var(--dk-gray-400);
-}
-
-
-
-
-/** --------------------------------
- -- Charts
--------------------------------- */
-.charts .chart-container {
-	background-color: var(--dk-dark-bg);
-}
-
-.charts .chart-container h3 {
-	color: var(--dk-gray-400)
-}
-
-
-
-
-/** --------------------------------
- -- users
--------------------------------- */
-.admins .box .admin {
-	background-color: var(--dk-dark-bg);
-}
-
-.admins .box h3 {
-	color: var(--dk-gray-300);
-}
-
-.admins .box p {
-	color: var(--dk-gray-400)
-}
-
-
-
-
-/** --------------------------------
- -- statis
--------------------------------- */
-.statis {
-	color: var(--dk-gray-100);
-}
-
-.statis .box {
-	position: relative;
-	overflow: hidden;
-	border-radius: 3px;
-}
-
-.statis .box h3:after {
-	content: "";
-	height: 2px;
-	width: 70%;
-	margin: auto;
-	background-color: rgba(255, 255, 255, 0.12);
-	display: block;
-	margin-top: 10px;
-}
-
-.statis .box i {
-	position: absolute;
-	height: 70px;
-	width: 70px;
-	font-size: 22px;
-	padding: 15px;
-	top: -25px;
-	left: -25px;
-	background-color: rgba(255, 255, 255, 0.15);
-	line-height: 60px;
-	text-align: right;
-	border-radius: 50%;
-}
-
-
-
-
-
-.main-color {
-	color: #ffc107
-}
-
-/** --------------------------------
- -- Please don't do that in real-world projects!
- -- overwrite Bootstrap variables instead.
--------------------------------- */
 
 .navbar {
-	background-color: var(--navbar-bg-color) !important;
-	border: none !important;
-}
-.navbar .dropdown-menu {
-	right: auto !important;
-	left: 0 !important;
-}
-.navbar .navbar-nav>li>a {
-	color: #EEE !important;
-	line-height: 55px !important;
-	padding: 0 10px !important;
-}
-.navbar .navbar-brand {color:#FFF !important}
-.navbar .navbar-nav>li>a:focus,
-.navbar .navbar-nav>li>a:hover {color: #EEE !important}
-
-.navbar .navbar-nav>.open>a,
-.navbar .navbar-nav>.open>a:focus,
-.navbar .navbar-nav>.open>a:hover {background-color: transparent !important; color: #FFF !important}
-
-.navbar .navbar-brand {line-height: 55px !important; padding: 0 !important}
-.navbar .navbar-brand:focus,
-.navbar .navbar-brand:hover {color: #FFF !important}
-.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand {margin: 0 !important}
-@media (max-width: 767px) {
-	.navbar>.container-fluid .navbar-brand {
-		margin-left: 15px !important;
-	}
-	.navbar .navbar-nav>li>a {
-		padding-left: 0 !important;
-	}
-	.navbar-nav {
-		margin: 0 !important;
-	}
-	.navbar .navbar-collapse,
-	.navbar .navbar-form {
-		border: none !important;
-	}
+  background-color: #1b2431;
 }
 
-.navbar .navbar-nav>li>a {
-	float: left !important;
+.sidebar {
+  background-color: #1b2431;
+  box-shadow: none;
 }
-.navbar .navbar-nav>li>a>span:not(.caret) {
-	background-color: #e74c3c !important;
-	border-radius: 50% !important;
-	height: 25px !important;
-	width: 25px !important;
-	padding: 2px !important;
-	font-size: 11px !important;
-	position: relative !important;
-	top: -10px !important;
-	right: 5px !important
+.sidebar .nav-link {
+  border-left: 5px solid transparent;
+  color: #738297;
+  padding: 0.5rem 0.75rem;
 }
-.dropdown-menu>li>a {
-	padding-top: 5px !important;
-	padding-right: 5px !important;
+.sidebar .nav-link:hover {
+  color: white;
 }
-.navbar .navbar-nav>li>a>i {
-	font-size: 18px !important;
+.sidebar .nav-link.active {
+  border-left: 5px solid #738297;
+  color: white;
 }
-
-
-
-
-/* Start media query */
-
-@media (max-width: 767px) {
-	#wrapper {
-		margin: 0 !important
-	}
-	.statistics .box {
-		margin-bottom: 25px !important;
-	}
-	.navbar .navbar-nav .open .dropdown-menu>li>a {
-		color: #CCC !important
-	}
-	.navbar .navbar-nav .open .dropdown-menu>li>a:hover {
-		color: #FFF !important
-	}
-	.navbar .navbar-toggle{
-		border:none !important;
-		color: #EEE !important;
-		font-size: 18px !important;
-	}
-	.navbar .navbar-toggle:focus, .navbar .navbar-toggle:hover {background-color: transparent !important}
+.sidebar .zmdi {
+  display: inline-block;
+  font-size: 1.35rem;
+  margin-right: 5px;
+  min-width: 25px;
 }
 
-
-::-webkit-scrollbar {
-	background: transparent;
-	width: 5px;
-	height: 5px;
+.card-list {
+  width: 100%;
+}
+.card-list:before, .card-list:after {
+  content: " ";
+  display: table;
+}
+.card-list:after {
+  clear: both;
 }
 
-::-webkit-scrollbar-thumb {
-	background-color: #3c3f58;
+.card {
+  border-radius: 8px;
+  color: white;
+  padding: 10px;
+  position: relative;
+}
+.card .zmdi {
+  color: white;
+  font-size: 28px;
+  opacity: 0.3;
+  position: absolute;
+  right: 13px;
+  top: 13px;
+}
+.card .stat {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 8px;
+  margin-top: 25px;
+  padding: 10px 10px 0;
+  text-transform: uppercase;
+}
+.card .title {
+  display: inline-block;
+  font-size: 8px;
+  padding: 10px 10px 0;
+  text-transform: uppercase;
+}
+.card .value {
+  font-size: 28px;
+  padding: 0 10px;
+}
+.card.blue {
+  background-color: #2298F1;
+}
+.card.green {
+  background-color: #66B92E;
+}
+.card.orange {
+  background-color: #DA932C;
+}
+.card.red {
+  background-color: #D65B4A;
 }
 
-::-webkit-scrollbar-thumb:hover {
-	background-color: rgba(0, 0, 0, 0.3);
+.projects {
+  background-color: #273142;
+  border: 1px solid #313D4F;
+  overflow-x: auto;
+  width: 100%;
+}
+.projects-inner {
+  border-radius: 4px;
+}
+
+.projects-header {
+  color: white;
+  padding: 22px;
+}
+.projects-header .count,
+.projects-header .title {
+  display: inline-block;
+}
+.projects-header .count {
+  color: #738297;
+}
+.projects-header .zmdi {
+  cursor: pointer;
+  float: right;
+  font-size: 16px;
+  margin: 5px 0;
+}
+.projects-header .title {
+  font-size: 21px;
+}
+.projects-header .title + .count {
+  margin-left: 5px;
+}
+
+.projects-table {
+  background: #273142;
+  width: 100%;
+}
+.projects-table td,
+.projects-table th {
+  color: white;
+  padding: 10px 22px;
+  vertical-align: middle;
+}
+.projects-table td p {
+  font-size: 12px;
+}
+.projects-table td p:last-of-type {
+  color: #738297;
+  font-size: 11px;
+}
+.projects-table th {
+  background-color: #313D4F;
+}
+.projects-table tr:hover {
+  background-color: #303d52;
+}
+.projects-table tr:not(:last-of-type) {
+  border-bottom: 1px solid #313D4F;
+}
+.projects-table .member figure,
+.projects-table .member .member-info {
+  display: inline-block;
+  vertical-align: top;
+}
+.projects-table .member figure + .member-info {
+  margin-left: 7px;
+}
+.projects-table .member img,video,audio {
+  height: 80px;
+  width: 150px;
+}
+.projects-table .status > form {
+  float: right;
+}
+.projects-table .status-text {
+  display: inline-block;
+  font-size: 12px;
+  margin: 11px 0;
+  padding-left: 20px;
+  position: relative;
+}
+.projects-table .status-text:before {
+  border: 3px solid;
+  border-radius: 50%;
+  content: "";
+  height: 14px;
+  left: 0;
+  position: absolute;
+  top: 1px;
+  width: 14px;
+}
+.projects-table .status-text.status-blue:before {
+  border-color: #1C93ED;
+}
+.projects-table .status-text.status-green:before {
+  border-color: #66B92E;
+}
+.projects-table .status-text.status-orange:before {
+  border-color: #DA932C;
+}
+.projects-table .status-text.status-red:before {
+  border-color: #D65B4A;
+}
+
+.selectric {
+  background-color: transparent;
+  border-color: #313D4F;
+  border-radius: 4px;
+}
+.selectric .label {
+  color: #738297;
+  line-height: 34px;
+  margin-right: 10px;
+  text-align: left;
+}
+.selectric-wrapper {
+  float: right;
+  width: 150px;
+}
+
+.chart {
+  border-radius: 3px;
+  border: 1px solid #313D4F;
+  color: white;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+}
+.chart canvas {
+  height: 400px;
+  margin: 20px 0;
+  width: 100%;
+}
+.chart .actions {
+  margin: 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.chart .actions span {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  margin: 5px;
+  padding: 4px;
+}
+.chart .actions .btn-link {
+  color: white;
+}
+.chart .actions .btn-link i {
+  font-size: 1.75rem;
+}
+.chart .title {
+  font-size: 18px;
+  margin: 0;
+  padding: 15px 0 5px;
+}
+.chart .title + .tagline {
+  margin-top: 10px;
+}
+.chart .tagline {
+  font-size: 12px;
+}
+
+.danger-item {
+  border-left: 4px solid #A84D43;
+}
+
+.zmdi {
+  line-height: 1;
+  vertical-align: middle;
+}
+.brand-image{
+  width: 50px;
+  height: auto;
 }
 </style>
 
@@ -408,599 +312,420 @@ body {
 </head>
 
 <body translate="no">
-  <aside class="sidebar position-fixed top-0 left-0 overflow-auto h-100 float-left" id="show-side-navigation1">
-  <i class="uil-bars close-aside d-md-none d-lg-none" data-close="show-side-navigation1"></i>
-  <div class="sidebar-header d-flex justify-content-center align-items-center px-3 py-4">
-    <img
-         class="rounded-pill img-fluid"
-         width="65"
-         src="static/indexpage/images/acc.png"
-         alt="">
-    <div class="ms-2">
-      <h5 class="fs-6 mb-0">
-        <a class="text-decoration-none" href="#">Pabitra Maharana</a>
-      </h5>
-      <p class="mt-1 mb-0">Lorem ipsum dolor sit amet consectetur.</p>
-    </div>
+  <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0">
+    <img src="{{url_for('static', filename = 'indexpage/images/acc.png')}}" class="brand-image">
+	<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ url_for('homeMain') }}">{{ user.username }}</a>
+  
+	<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+	<ul class="navbar-nav px-3">
+		<li class="nav-item text-nowrap">
+			<a class="nav-link" href="{{ url_for('logout') }}">Sign out</a>
+		</li>
+	</ul>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<nav class="col-md-2 d-none d-md-block sidebar">
+			<div class="sidebar-sticky" style="padding-top: 2rem;">
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link active" href="#">
+                  <i class="zmdi zmdi-widgets"></i>
+                  Dashboard <span class="sr-only">(current)</span>
+                </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+                  <i class="zmdi zmdi-file-text"></i>
+                  Content
+                </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('fileupload') }}">
+                  <i class="zmdi zmdi-shopping-cart"></i>
+                  Upload
+                </a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('chatpage') }}">
+                  <i class="zmdi zmdi-accounts"></i>
+                  Zenith AI
+                </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('audio') }}">
+                  <i class="zmdi zmdi-chart"></i>
+                  Beat Maker
+                </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+                  <i class="zmdi zmdi-layers"></i>
+                  Integrations
+                </a>
+					</li>
+				</ul>
+
+			
+			</div>
+		</nav>
+		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 my-3">
+			<div class="card-list">
+				<div class="row">
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card blue">
+							<div class="title">all Content</div>
+							<i class="zmdi zmdi-upload"></i>
+							<div class="value">89</div>
+							<div class="stat"><b>13</b>% increase</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card green">
+							<div class="title">Channel Subscribers</div>
+							<i class="zmdi zmdi-upload"></i>
+							<div class="value">5,990</div>
+							<div class="stat"><b>4</b>% increase</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card orange">
+							<div class="title">total Earnings</div>
+							<i class="zmdi zmdi-download"></i>
+							<div class="value">$80,990</div>
+							<div class="stat"><b>13</b>% decrease</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card red">
+							<div class="title">Content this month</div>
+							<i class="zmdi zmdi-download"></i>
+							<div class="value">3</div>
+							<div class="stat"><b>13</b>% decrease</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+<div class="projects mb-4">
+  <div class="projects-inner">
+    <header class="projects-header">
+      <div class="title">Channel Content</div>
+      <div class="count">| 32 Projects</div>
+      <i class="zmdi zmdi-download"></i>
+    </header>
+    <table class="projects-table">
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Release</th>
+          <th>Name</th>
+          <th>Earnings</th>
+          <th>Visibility</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+
+      {% for file in files %}
+      <tr>
+        <td>
+          <p>{{ file }}</p>
+          <p>Description</p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="text-danger">Published</p>
+        </td>
+
+        <td class="member">
+          <figure>
+
+            {% if file.endswith(('.mp4', '.webm', '.ogg')) %}
+            <video controls class="img-fluid">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/mp4">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/webm">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        {% elif file.endswith(('.mp3', '.wav', '.ogg')) %}
+            <audio controls class="img-fluid" style="height: 50px;">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="audio/mpeg">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="audio/wav">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="audio/ogg">
+                Your browser does not support the audio tag.
+            </audio>
+        {% else %}
+            <img src="{{ url_for('static', filename='uploads/' + file) }}" class="img-fluid">
+        {% endif %}
+            
+          </figure>
+        </td>
+        
+        <td>
+          <p>$4,670</p>
+          <p>Earned</p>
+        </td>
+        <td class="status">
+          <span id="status-text" class="status-text status-orange" >Public</span>
+        </td>
+        <td>
+          <form class="form" action="#" method="POST">
+            <select class="action-box" onchange="updateStatus(this)">
+              <option>Public</option>
+              <option>Edit</option>
+              <option>Private</option>
+              <option>Delete</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
   </div>
+</div>
 
-  <div class="search position-relative text-center px-4 py-3 mt-2">
-    <input type="text" class="form-control w-100 border-0 bg-transparent" placeholder="Search here">
-    <i class="fa fa-search position-absolute d-block fs-6"></i>
-  </div>
 
-  <ul class="categories list-unstyled">
-    <li class="has-dropdown">
-      <i class="uil-estate fa-fw"></i><a href="#"> Dashboard</a>
-      <ul class="sidebar-dropdown list-unstyled">
-        <li><a href="#">Lorem ipsum</a></li>
-        <li><a href="#">ipsum dolor</a></li>
-        <li><a href="#">dolor ipsum</a></li>
-        <li><a href="#">amet consectetur</a></li>
-        <li><a href="#">ipsum dolor sit</a></li>
-      </ul>
-    </li>
-    <li class="">
-      <i class="uil-folder"></i><a href="#"> File manager</a>
-    </li>
-    <li class="has-dropdown">
-      <i class="uil-calendar-alt"></i><a href="#"> Calender</a>
-      <ul class="sidebar-dropdown list-unstyled">
-        <li><a href="#">Lorem ipsum</a></li>
-        <li><a href="#">ipsum dolor</a></li>
-        <li><a href="#">dolor ipsum</a></li>
-        <li><a href="#">amet consectetur</a></li>
-        <li><a href="#">ipsum dolor sit</a></li>
-      </ul>
-    </li>
-    <li class="has-dropdown">
-      <i class="uil-envelope-download fa-fw"></i><a href="#"> Mailbox</a>
-      <ul class="sidebar-dropdown list-unstyled">
-        <li><a href="#">Lorem ipsum</a></li>
-        <li><a href="#">ipsum dolor</a></li>
-        <li><a href="#">dolor ipsum</a></li>
-        <li><a href="#">amet consectetur</a></li>
-        <li><a href="#">ipsum dolor sit</a></li>
-      </ul>
-    </li>
-    <li class="has-dropdown">
-      <i class="uil-bag"></i><a href="#"> Projects</a>
-      <ul class="sidebar-dropdown list-unstyled">
-        <li><a href="#">Lorem ipsum</a></li>
-        <li><a href="#">ipsum dolor</a></li>
-        <li><a href="#">dolor ipsum</a></li>
-        <li><a href="#">amet consectetur</a></li>
-        <li><a href="#">ipsum dolor sit</a></li>
-      </ul>
-    </li>
-    <li class="">
-      <i class="uil-setting"></i><a href="#"> Settings</a>
-      <ul class="sidebar-dropdown list-unstyled">
-        <li><a href="#">Lorem ipsum</a></li>
-        <li><a href="#">ipsum dolor</a></li>
-        <li><a href="#">dolor ipsum</a></li>
-        <li><a href="#">amet consectetur</a></li>
-        <li><a href="#">ipsum dolor sit</a></li>
-      </ul>
-    </li>
-    <li class="has-dropdown">
-      <i class="uil-chart-pie-alt"></i><a href="#"> Components</a>
-      <ul class="sidebar-dropdown list-unstyled">
-        <li><a href="#">Lorem ipsum</a></li>
-        <li><a href="#">ipsum dolor</a></li>
-        <li><a href="#">dolor ipsum</a></li>
-        <li><a href="#">amet consectetur</a></li>
-        <li><a href="#">ipsum dolor sit</a></li>
-      </ul>
-    </li>
-    <li class="has-dropdown">
-      <i class="uil-panel-add"></i><a href="#"> Charts</a>
-      <ul class="sidebar-dropdown list-unstyled">
-        <li><a href="#">Lorem ipsum</a></li>
-        <li><a href="#">ipsum dolor</a></li>
-        <li><a href="#">dolor ipsum</a></li>
-        <li><a href="#">amet consectetur</a></li>
-        <li><a href="#">ipsum dolor sit</a></li>
-      </ul>
-    </li>
-  </ul>
-</aside>
+			<div class="chart-data">
+				<div class="row">
+					<div class="col-12 col-md-4">
+						<div class="chart radar-chart dark">
+							<div class="actions">
+								<button type="button" class="btn btn-link" 
+										  data-toggle="dropdown" 
+										  aria-haspopup="true" aria-expanded="false">
+									 <i class="zmdi zmdi-more-vert"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<button class="dropdown-item" type="button">Action</button>
+									<button class="dropdown-item" type="button">Another action</button>
+									<button class="dropdown-item" type="button">Something else here</button>
+								</div>
+							</div>
+							<h3 class="title">Content Type</h3>
+							<p class="tagline">Yearly</p>
+							<canvas height="400" id="radarChartDark"></canvas>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="chart bar-chart light">
+							<div class="actions">
+								<button type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									 <i class="zmdi zmdi-more-vert"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<button class="dropdown-item" type="button">Action</button>
+									<button class="dropdown-item" type="button">Another action</button>
+									<button class="dropdown-item" type="button">Something else here</button>
+								</div>
+							</div>
+							<h3 class="title">Monthly revenue</h3>
+							<p class="tagline">2015 (in thousands US$)</p>
+							<canvas height="400" id="barChartHDark"></canvas>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="chart doughnut-chart dark">
+							<div class="actions">
+								<button type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									 <i class="zmdi zmdi-more-vert"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<button class="dropdown-item" type="button">Action</button>
+									<button class="dropdown-item" type="button">Another action</button>
+									<button class="dropdown-item" type="button">Something else here</button>
+								</div>
+							</div>
+							<h3 class="title">Viewers</h3>
+							<p class="tagline">2015</p>
+							<canvas height="400" id="doughnutChartDark"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<script src='https://cdn.jsdelivr.net/jquery.selectric/1.10.1/jquery.selectric.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js'></script>
 
-<section id="wrapper">
-  <nav class="navbar navbar-expand-md">
-    <div class="container-fluid mx-2">
-      <div class="navbar-header">
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggle-navbar" aria-controls="toggle-navbar" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="uil-bars text-white"></i>
-        </button>
-        <a class="navbar-brand" href="#">admin<span class="main-color">kit</span></a>
-      </div>
-      <div class="collapse navbar-collapse" id="toggle-navbar">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Settings
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li>
-                <a class="dropdown-item" href="#">My account</a>
-              </li>
-              <li><a class="dropdown-item" href="#">My inbox</a>
-              </li>
-              <li><a class="dropdown-item" href="#">Help</a>
-              </li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Log out</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="uil-comments-alt"></i><span>23</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><i class="uil-bell"></i><span>98</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i data-show="show-side-navigation1" class="uil-bars show-side-btn"></i>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <div class="p-4">
-    <div class="welcome">
-      <div class="content rounded-3 p-3">
-        <h1 class="fs-3">Welcome to Dashboard</h1>
-        <p class="mb-0">Hello Jone Doe, welcome to your awesome dashboard!</p>
-      </div>
-    </div>
-
-    <section class="statistics mt-4">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
-            <i class="uil-envelope-shield fs-2 text-center bg-primary rounded-circle"></i>
-            <div class="ms-3">
-              <div class="d-flex align-items-center">
-                <h3 class="mb-0">1,245</h3> <span class="d-block ms-2">Emails</span>
-              </div>
-              <p class="fs-normal mb-0">Lorem ipsum dolor sit amet</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="box d-flex rounded-2 align-items-center mb-4 mb-lg-0 p-3">
-            <i class="uil-file fs-2 text-center bg-danger rounded-circle"></i>
-            <div class="ms-3">
-              <div class="d-flex align-items-center">
-                <h3 class="mb-0">34</h3> <span class="d-block ms-2">Projects</span>
-              </div>
-              <p class="fs-normal mb-0">Lorem ipsum dolor sit amet</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4">
-          <div class="box d-flex rounded-2 align-items-center p-3">
-            <i class="uil-users-alt fs-2 text-center bg-success rounded-circle"></i>
-            <div class="ms-3">
-              <div class="d-flex align-items-center">
-                <h3 class="mb-0">5,245</h3> <span class="d-block ms-2">Users</span>
-              </div>
-              <p class="fs-normal mb-0">Lorem ipsum dolor sit amet</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="charts mt-4">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="chart-container rounded-2 p-3">
-            <h3 class="fs-6 mb-3">Chart title number one</h3>
-            <canvas id="myChart"></canvas>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="chart-container rounded-2 p-3">
-            <h3 class="fs-6 mb-3">Chart title number two</h3>
-            <canvas id="myChart2"></canvas>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="admins mt-4">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="box">
-            <!-- <h4>Admins:</h4> -->
-            <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
-              <div class="img">
-                <img class="img-fluid rounded-pill"
-                     width="75" height="75"
-                     src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148906966/small/1501685402/enhance"
-                     alt="admin">
-              </div>
-              <div class="ms-3">
-                <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-              </div>
-            </div>
-            <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
-              <div class="img">
-                <img class="img-fluid rounded-pill"
-                     width="75" height="75"
-                     src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907137/small/1501685404/enhance"
-                     alt="admin">
-              </div>
-              <div class="ms-3">
-                <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-              </div>
-            </div>
-            <div class="admin d-flex align-items-center rounded-2 p-3">
-              <div class="img">
-                <img class="img-fluid rounded-pill"
-                     width="75" height="75"
-                     src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907019/small/1501685403/enhance"
-                     alt="admin">
-              </div>
-              <div class="ms-3">
-                <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="box">
-            <!-- <h4>Moderators:</h4> -->
-            <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
-              <div class="img">
-                <img class="img-fluid rounded-pill"
-                     width="75" height="75"
-                     src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907114/small/1501685404/enhance"
-                     alt="admin">
-              </div>
-              <div class="ms-3">
-                <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-              </div>
-            </div>
-            <div class="admin d-flex align-items-center rounded-2 p-3 mb-4">
-              <div class="img">
-                <img class="img-fluid rounded-pill"
-                     width="75" height="75"
-                     src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907086/small/1501685404/enhance"
-                     alt="admin">
-              </div>
-              <div class="ms-3">
-                <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-              </div>
-            </div>
-            <div class="admin d-flex align-items-center rounded-2 p-3">
-              <div class="img">
-                <img class="img-fluid rounded-pill"
-                     width="75" height="75"
-                     src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance"
-                     alt="admin">
-              </div>
-              <div class="ms-3">
-                <h3 class="fs-5 mb-1">Joge Lucky</h3>
-                <p class="mb-0">Lorem ipsum dolor sit amet consectetur elit.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="statis mt-4 text-center">
-      <div class="row">
-        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-          <div class="box bg-primary p-3">
-            <i class="uil-eye"></i>
-            <h3>5,154</h3>
-            <p class="lead">Page views</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
-          <div class="box bg-danger p-3">
-            <i class="uil-user"></i>
-            <h3>245</h3>
-            <p class="lead">User registered</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
-          <div class="box bg-warning p-3">
-            <i class="uil-shopping-cart"></i>
-            <h3>5,154</h3>
-            <p class="lead">Product sales</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-3">
-          <div class="box bg-success p-3">
-            <i class="uil-feedback"></i>
-            <h3>5,154</h3>
-            <p class="lead">Transactions</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="charts mt-4">
-      <div class="chart-container p-3">
-        <h3 class="fs-6 mb-3">Chart title number three</h3>
-        <div style="height: 300px">
-          <canvas id="chart3" width="100%"></canvas>
-        </div>
-      </div>
-    </section>
-  </div>
-</section>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.jshttps://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js'></script>
       <script id="rendered-js" >
-// Other important pens.
-// Map: https://codepen.io/themustafaomar/pen/ZEGJeZq
-// Navbar: https://codepen.io/themustafaomar/pen/VKbQyZ
-
-'use strict';
-
-function $(selector) {
-  return document.querySelector(selector);
-}
-
-function find(el, selector) {
-  let finded;
-  return (finded = el.querySelector(selector)) ? finded : null;
-}
-
-function siblings(el) {
-  const siblings = [];
-  for (let sibling of el.parentNode.children) {
-    if (sibling !== el) {
-      siblings.push(sibling);
+"use strict";
+class Selectize {
+    constructor() {
+        this.init();
     }
-  }
-  return siblings;
-}
-
-const showAsideBtn = $('.show-side-btn');
-const sidebar = $('.sidebar');
-const wrapper = $('#wrapper');
-
-showAsideBtn.addEventListener('click', function () {
-  $(`#${this.dataset.show}`).classList.toggle('show-sidebar');
-  wrapper.classList.toggle('fullwidth');
-});
-
-if (window.innerWidth < 767) {
-  sidebar.classList.add('show-sidebar');
-}
-
-window.addEventListener('resize', function () {
-  if (window.innerWidth > 767) {
-    sidebar.classList.remove('show-sidebar');
-  }
-});
-
-// dropdown menu in the side nav
-var slideNavDropdown = $('.sidebar-dropdown');
-
-$('.sidebar .categories').addEventListener('click', function (event) {
-  event.preventDefault();
-
-  const item = event.target.closest('.has-dropdown');
-
-  if (!item) {
-    return;
-  }
-
-  item.classList.toggle('opened');
-
-  siblings(item).forEach(sibling => {
-    sibling.classList.remove('opened');
-  });
-
-  if (item.classList.contains('opened')) {
-    const toOpen = find(item, '.sidebar-dropdown');
-
-    if (toOpen) {
-      toOpen.classList.add('active');
+    init() {
+        var initValue;
+        $('.action-box').selectric({
+            onInit: function (element) {
+                initValue = $(this).val();
+            },
+            onChange: function (element) {
+                if ($(this).val() !== initValue)
+                    $(element).parents('form').submit();
+            }
+        });
     }
-
-    siblings(item).forEach(sibling => {
-      const toClose = find(sibling, '.sidebar-dropdown');
-
-      if (toClose) {
-        toClose.classList.remove('active');
-      }
-    });
-  } else {
-    find(item, '.sidebar-dropdown').classList.toggle('active');
-  }
-});
-
-$('.sidebar .close-aside').addEventListener('click', function () {
-  $(`#${this.dataset.close}`).classList.add('show-sidebar');
-  wrapper.classList.remove('margin');
-});
-
-
-// Global defaults
-Chart.defaults.global.animation.duration = 2000; // Animation duration
-Chart.defaults.global.title.display = false; // Remove title
-Chart.defaults.global.defaultFontColor = '#71748c'; // Font color
-Chart.defaults.global.defaultFontSize = 13; // Font size for every label
-
-// Tooltip global resets
-Chart.defaults.global.tooltips.backgroundColor = '#111827';
-Chart.defaults.global.tooltips.borderColor = 'blue';
-
-// Gridlines global resets
-Chart.defaults.scale.gridLines.zeroLineColor = '#3b3d56';
-Chart.defaults.scale.gridLines.color = '#3b3d56';
-Chart.defaults.scale.gridLines.drawBorder = false;
-
-// Legend global resets
-Chart.defaults.global.legend.labels.padding = 0;
-Chart.defaults.global.legend.display = false;
-
-// Ticks global resets
-Chart.defaults.scale.ticks.fontSize = 12;
-Chart.defaults.scale.ticks.fontColor = '#71748c';
-Chart.defaults.scale.ticks.beginAtZero = false;
-Chart.defaults.scale.ticks.padding = 10;
-
-// Elements globals
-Chart.defaults.global.elements.point.radius = 0;
-
-// Responsivess
-Chart.defaults.global.responsive = true;
-Chart.defaults.global.maintainAspectRatio = false;
-
-// The bar chart
-var myChart = new Chart(document.getElementById('myChart'), {
-  type: 'bar',
-  data: {
-    labels: ["January", "February", "March", "April", 'May', 'June', 'August', 'September'],
-    datasets: [{
-      label: "Lost",
-      data: [45, 25, 40, 20, 60, 20, 35, 25],
-      backgroundColor: "#0d6efd",
-      borderColor: 'transparent',
-      borderWidth: 2.5,
-      barPercentage: 0.4 },
-    {
-      label: "Succes",
-      startAngle: 2,
-      data: [20, 40, 20, 50, 25, 40, 25, 10],
-      backgroundColor: "#dc3545",
-      borderColor: 'transparent',
-      borderWidth: 2.5,
-      barPercentage: 0.4 }] },
-
-
-  options: {
-    scales: {
-      yAxes: [{
-        gridLines: {},
-        ticks: {
-          stepSize: 15 } }],
-
-
-      xAxes: [{
-        gridLines: {
-          display: false } }] } } });
-
-
-
-
-
-
-// The line chart
-var chart = new Chart(document.getElementById('myChart2'), {
-  type: 'line',
-  data: {
-    labels: ["January", "February", "March", "April", 'May', 'June', 'August', 'September'],
-    datasets: [{
-      label: "My First dataset",
-      data: [4, 20, 5, 20, 5, 25, 9, 18],
-      backgroundColor: 'transparent',
-      borderColor: '#0d6efd',
-      lineTension: .4,
-      borderWidth: 1.5 },
-    {
-      label: "Month",
-      data: [11, 25, 10, 25, 10, 30, 14, 23],
-      backgroundColor: 'transparent',
-      borderColor: '#dc3545',
-      lineTension: .4,
-      borderWidth: 1.5 },
-    {
-      label: "Month",
-      data: [16, 30, 16, 30, 16, 36, 21, 35],
-      backgroundColor: 'transparent',
-      borderColor: '#f0ad4e',
-      lineTension: .4,
-      borderWidth: 1.5 }] },
-
-
-  options: {
-    scales: {
-      yAxes: [{
-        gridLines: {
-          drawBorder: false },
-
-        ticks: {
-          stepSize: 12 } }],
-
-
-      xAxes: [{
-        gridLines: {
-          display: false } }] } } });
-
-
-
-
-
-
-var chart = document.getElementById('chart3');
-var myChart = new Chart(chart, {
-  type: 'line',
-  data: {
-    labels: ["One", "Two", "Three", "Four", "Five", 'Six', "Seven", "Eight"],
-    datasets: [{
-      label: "Lost",
-      lineTension: 0.2,
-      borderColor: '#d9534f',
-      borderWidth: 1.5,
-      showLine: true,
-      data: [3, 30, 16, 30, 16, 36, 21, 40, 20, 30],
-      backgroundColor: 'transparent' },
-    {
-      label: "Lost",
-      lineTension: 0.2,
-      borderColor: '#5cb85c',
-      borderWidth: 1.5,
-      data: [6, 20, 5, 20, 5, 25, 9, 18, 20, 15],
-      backgroundColor: 'transparent' },
-
-    {
-      label: "Lost",
-      lineTension: 0.2,
-      borderColor: '#f0ad4e',
-      borderWidth: 1.5,
-      data: [12, 20, 15, 20, 5, 35, 10, 15, 35, 25],
-      backgroundColor: 'transparent' },
-
-    {
-      label: "Lost",
-      lineTension: 0.2,
-      borderColor: '#337ab7',
-      borderWidth: 1.5,
-      data: [16, 25, 10, 25, 10, 30, 14, 23, 14, 29],
-      backgroundColor: 'transparent' }] },
-
-
-  options: {
-    scales: {
-      yAxes: [{
-        gridLines: {
-          drawBorder: false },
-
-        ticks: {
-          stepSize: 12 } }],
-
-
-      xAxes: [{
-        gridLines: {
-          display: false } }] } } });
+}
+class Charts {
+    constructor() {
+        this.colors = ["#DB66AE", "#8185D6", "#89D9DF", "#E08886"];
+        this.tickColor = "#757681";
+        this.initRadar();
+        this.initBarHorizontal();
+        this.initDoughnut();
+    }
+    initRadar() {
+        var ctxD = $('#radarChartDark'), chartData = {
+            type: 'radar',
+            data: {
+                labels: ["Education", "Food", "Transport", "Drinks", "Other"],
+                datasets: [
+                    {
+                        label: "2014",
+                        backgroundColor: this.convertHex(this.colors[0], 20),
+                        borderColor: this.colors[0],
+                        borderWidth: 1,
+                        pointRadius: 2,
+                        data: [51, 67, 90, 31, 16],
+                    },
+                    {
+                        label: "2015",
+                        backgroundColor: this.convertHex(this.colors[1], 20),
+                        borderColor: this.colors[1],
+                        borderWidth: 1,
+                        pointRadius: 2,
+                        data: [75, 44, 19, 22, 43],
+                    },
+                    {
+                        label: "2015",
+                        backgroundColor: this.convertHex(this.colors[2], 20),
+                        borderColor: this.colors[2],
+                        borderWidth: 1,
+                        pointRadius: 2,
+                        data: [7, 14, 29, 82, 33]
+                    }
+                ]
+            },
+            options: {
+                scale: {
+                    pointLabels: {
+                        fontColor: this.tickColor
+                    },
+                    ticks: {
+                        display: false,
+                        stepSize: 25
+                    }
+                },
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        boxWidth: 11,
+                        fontColor: this.tickColor,
+                        fontSize: 11
+                    }
+                }
+            }
+        }, myDarkRadarChart = new Chart(ctxD, chartData);
+    }
+    initBarHorizontal() {
+        var ctxD = $("#barChartHDark"), chartData = {
+            type: 'horizontalBar',
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                datasets: [{
+                        data: [27, 59, 68, 26, 79, 55, 36, 43, 44, 30, 55, 64],
+                        backgroundColor: this.colors[0],
+                        hoverBackgroundColor: this.convertHex(this.colors[0], 70)
+                    },
+                    {
+                        data: [136, 23, 44, 30, 79, 55, 61, 94, 27, 59, 98, 91],
+                        backgroundColor: this.colors[1],
+                        hoverBackgroundColor: this.convertHex(this.colors[1], 70)
+                    },
+                    {
+                        data: [88, 31, 87, 61, 77, 27, 59, 58, 136, 26, 79, 85],
+                        backgroundColor: this.colors[2],
+                        hoverBackgroundColor: this.convertHex(this.colors[2], 70)
+                    }]
+            },
+            options: {
+                barThickness: 10,
+                scales: {
+                    xAxes: [{
+                            stacked: true,
+                            ticks: {
+                                fontColor: this.tickColor,
+                            },
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
+                        }],
+                    yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                fontColor: this.tickColor,
+                                min: 0,
+                                max: 175,
+                                stepSize: 25
+                            }
+                        }]
+                },
+                legend: {
+                    display: false
+                }
+            }
+        }, myDarkRadarChart = new Chart(ctxD, chartData);
+    }
+    initDoughnut() {
+        var ctxD = $('#doughnutChartDark'), chartData = {
+            type: 'doughnut',
+            data: {
+                labels: ["Brasil", "India", "China"],
+                datasets: [{
+                        data: [300, 50, 100],
+                        borderWidth: 0,
+                        backgroundColor: [
+                            this.convertHex(this.colors[0], 60),
+                            this.convertHex(this.colors[1], 60),
+                            this.convertHex(this.colors[2], 60),
+                        ],
+                        hoverBackgroundColor: [
+                            this.colors[0],
+                            this.colors[1],
+                            this.colors[2],
+                        ]
+                    }]
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        boxWidth: 11,
+                        fontColor: this.tickColor,
+                        fontSize: 11
+                    }
+                }
+            }
+        }, myDarkRadarChart = new Chart(ctxD, chartData);
+    }
+    convertHex(hex, opacity) {
+        hex = hex.replace('#', '');
+        var r = parseInt(hex.substring(0, 2), 16);
+        var g = parseInt(hex.substring(2, 4), 16);
+        var b = parseInt(hex.substring(4, 6), 16);
+        var result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
+        return result;
+    }
+}
+new Selectize();
+new Charts();
 //# sourceURL=pen.js
     </script>
 

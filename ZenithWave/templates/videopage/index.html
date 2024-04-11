@@ -1,349 +1,46 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title> Zenith Wave</title>
-	<meta charset="UTF-8" />
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet"> 
-	<link href="{{url_for('static', filename = 'videopage/reset.css')}}" rel="stylesheet" />
-	<link href="{{url_for('static', filename = 'videopage/style.css')}}" rel="stylesheet" />
-    <link href="{{url_for('static', filename = 'indexpage/css/style.css')}}" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto&family=Varela+Round&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://kit.fontawesome.com/9d4aef4753.css" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/9d4aef4753.js" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="sidebar">
-        
-        <div class="logo">
-            <a href="#"><img src="{{url_for('static', filename = 'indexpage/images/logo.png')}}" alt="logo"></a>
-        </div>
-        <div class="navigation" id="upper">
-            <ul>
-                <li>
-                    <a href="{{ url_for('home') }}">
-                        <i class="fa-solid fa-home"></i>
-                        <span>Home</span>
-                    </a> 
-                </li>
+{% extends "videopage/base.html" %}
 
-                <li>
-                    <a href="#">
-                        <i class="fa fa-search"></i>
-                        <span>Search</span>
-                    </a> 
-                </li>
+{% block content %}
+    <video controls id="main-video" style="width: 100%;">
+        <source src="../../static/uploads/Valorant 2024.03.17 - 00.10.39.02.DVR.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+{% endblock %}
 
-                <li>
-                    <a href="{{ url_for('list') }}">
-                        <i class="fa fas fa-book"></i>
-                        <span>Your library</span>
-                    </a> 
-                </li>
-            </ul>
-        </div>
+{% block uservideodata %} 
+    <p class="name">{{user.username}}</p>
+    <p class="subscribers">409 subscribers</p>
+    <p class="description">
+        Justin has a case of the Mondays.
+        <br />
+        <br />Audio from My Brother, My Brother and Me Episode 220: Pissbeards and Pooh Corner
+    </p>
+    <p class="show-more">SHOW MORE</p>
+    <button class="subscribe">SUBSCRIBE</button>
+{% endblock %}
 
-        <div class="navigation">
-            <ul>
-                <li>
-                    <a href="#">
-                        <i class="fa fas fa-plus-square"></i>
-                        <span>Create Playlist</span>
-                    </a> 
-                </li>
-
-                <li>
-                    <a href="{{ url_for('list') }}">
-                        <i class="fa fas fa-heart"></i>
-                        <span>Liked Podcasts</span>
-                    </a> 
-                </li>
-            </ul>
-        </div>
-
-        <div class="policies">
-            <ul>
-                <li><a href="#">Cookies</a></li>
-                <li><a href="#">Privacy</a></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="main-container">
-        <div class="topbar">
-            <div class="prev-next-buttons">
-                <button type="button" class="fa fas fa-chevron-left"></button>
-                <button type="button" class="fa fas fa-chevron-right"></button>
-            </div>
-            <div class="navbar">
-                <ul>
-                    <li><a href="#">Premium</a></li>
-                    <li><a href="#">Support</a></li>
-                    <li><a href="#">Download</a></li>
-                    <li class="divider">|</li>
-                </ul>
-                <a href="{{ url_for('dash') }}"><button type="button">Dashboard</button></a>
+{% block videocontent %} 
+    {% for file in video_files %}
+        <div class="video-recommendation">
+            <a href="javascript:void(0);" onclick="changeVideo('{{ url_for('static', filename='uploads/' + file) }}')">
+                <video style="width: 100%;" >
+                    <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </a>
+            <div>
+                <p class="title">{{file}}</p>
+                <p class="user">{{user.username}}</p>
+                <p class="details">321K views &bull; 5 months ago</p>
             </div>
         </div>
-	
-	<div class="main">
-		<main>
-			<div class="iframe-container">
-				<iframe src="https://www.youtube.com/embed/N-kbFTirkyw" allowfullscreen></iframe>
-			</div>
-			<div id="title">
-				<h1>A Case of the Mondays- MBMBaM Kinetic Typography</h1>
-				<p>726,948 views &bull; Jun 16, 2017</p>
-				<ul>
-					<li>
-						<svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg>
-						<span>25K</span>
-					</li>
-					<li>
-						<svg viewBox="0 0 24 24"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z" class="style-scope yt-icon"></path></svg>
-						<span>131</span>
-					</li>
-					<li>
-						<svg viewBox="0 0 24 24"><path d="M11.7 8.3V4L19.2 11.5 11.7 18.9V14.6C6.4 14.6 2.7 16.3 0 20 1.1 14.7 4.3 9.3 11.7 8.3Z"/></svg>
-						<span>SHARE</span>
-					</li>
-					<li>
-						<svg viewBox="0 0 24 24"><path d="M14 10H2v2h12v-2zm0-4H2v2h12V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM2 16h8v-2H2v2z" class="style-scope yt-icon"/></svg>
-						<span>SAVE</span>
-					</li>
-					<li>
-						<svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
-					</li>
-				</ul>
-			</div>
-			<div class="info">
-				<img src="https://yt3.ggpht.com/a/AATXAJzEyxWQMlh03A3VKlIrP9pw1cBPHgXs2Grcb3H26g=s48-c-k-c0xffffffff-no-rj-mo" />
-				<div>
-					<p class="name">Emily Broude</p>
-					<p class="subscribers">409 subscribers</p>
-					<p class="description">
-						Justin has a case of the Mondays.
-						<br />
-						<br />Audio from My Brother, My Brother and Me Episode 220: Pissbeards and Pooh Corner
-					</p>
-					<p class="show-more">SHOW MORE</p>
-					<button class="subscribe">SUBSCRIBE</button>
-				</div>
-			</div>
-			<div class="comments">
-				<div class="header">
-					<ul>
-						<li>287 Comments</li>
-						<li class="sort-by">
-							<svg viewBox="0 0 24 24"><path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
-							<span>SORT BY</span>
-						</li>
-					</ul>
-					<div class="user-comment">
-						<img src="https://lh3.googleusercontent.com/a-/AOh14Gj71xOzpx7HJpdGKxOZwKLd67WYc4XZwj3gB_hK=s88"/>
-						<p>Commenting publicly as <strong>Anna Baker</strong></p>
-					</div>
-				</div>
-				<div class="comment">
-					<img src="https://yt3.ggpht.com/a/AATXAJzZcQS2R96U94EsBAdpNjfu4pvNOaQUbZVzPjWAsA=s48-c-k-c0xffffffff-no-rj-mo" />
-					<div>
-						<p class="user">ghost <span>2 years ago</span></p>
-						<p class="text">Griffin slowly growing angrier and louder reading out Justin's Spotify history is what I live for</p>
-						<ul>
-							<li>
-								<svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg>
-								<span>5.1K</span>
-							</li>
-							<li>
-								<svg viewBox="0 0 24 24"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z" class="style-scope yt-icon"></path></svg>
-							</li>
-							<li><span>REPLY</span></li>
-						</ul>
-						<div class="replies">
-							<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
-							<span>View 5 replies</span>
-						</div>
-					</div>
-				</div>
-				<div class="comment">
-					<img src="https://yt3.ggpht.com/a/AATXAJza-ThOFERq_2RSNJDUH4-DCKru8dhfA7WgQjFG=s48-c-k-c0xffffffff-no-rj-mo" />
-					<div>
-						<p class="user">Glen Lauderdale <span>3 years ago</span></p>
-						<p class="text">
-							Justin's final plea of "I had a case of the Mondays" almost sounded like Amalie was coming to Justin's defence.</p>
-						<ul>
-							<li>
-								<svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg>
-								<span>3.8K</span>
-							</li>
-							<li>
-								<svg viewBox="0 0 24 24"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z" class="style-scope yt-icon"></path></svg>
-							</li>
-							<li><span>REPLY</span></li>
-						</ul>
-						<div class="replies">
-							<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
-							<span>View 20 replies</span>
-						</div>
-					</div>
-				</div>
-				<div class="comment">
-					<img src="https://yt3.ggpht.com/a/AATXAJxsdp_bVPCnwdlwy4efG0aO36gRMAPL0ghDpDIqPQ=s48-c-k-c0xffffffff-no-rj-mo" />
-					<div>
-						<p class="user">Jada :0 <span>2 years ago</span></p>
-						<p class="text">i still have no idea how it went from tybee island to "you want me to put you on blast?" and ive watched this maybe 10 times</p>
-						<ul>
-							<li>
-								<svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg>
-								<span>2.6K</span>
-							</li>
-							<li>
-								<svg viewBox="0 0 24 24"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z" class="style-scope yt-icon"></path></svg>
-							</li>
-							<li><span>REPLY</span></li>
-						</ul>
-						<div class="replies">
-							<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
-							<span>View 15 replies</span>
-						</div>
-					</div>
-				</div>
-				<div class="comment">
-					<img src="https://yt3.ggpht.com/a/AATXAJyOeL4RWNIplv417cxlGV1eqnyhqWX8gK_XVhBNGQ=s48-c-k-c0xffffffff-no-rj-mo" />
-					<div>
-						<p class="user">Trent Hutson <span>3 years ago</span></p>
-						<p class="text">YOU USED TO BE MY BROTHER</p>
-						<ul>
-							<li>
-								<svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg>
-								<span>1.2K</span>
-							</li>
-							<li>
-								<svg viewBox="0 0 24 24"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z" class="style-scope yt-icon"></path></svg>
-							</li>
-							<li><span>REPLY</span></li>
-						</ul>
-						<div class="replies">
-							<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
-							<span>View 3 replies</span>
-						</div>
-					</div>
-				</div>
-				<div class="comment">
-					<img src="https://yt3.ggpht.com/a/AATXAJxSosbaZy1o6anvVKM2NoToZ8t-rr3S6nIjjg=s48-c-k-c0xffffffff-no-rj-mo" />
-					<div>
-						<p class="user">Ozzmaster2112 <span>3 years ago</span></p>
-						<p class="text">WHEN SALOME PLAYS THE DRUM BY <strong>J A M E S B U F F E T</strong></p>
-						<ul>
-							<li>
-								<svg viewBox="0 0 24 24"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg>
-								<span>2.8K</span>
-							</li>
-							<li>
-								<svg viewBox="0 0 24 24"><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z" class="style-scope yt-icon"></path></svg>
-							</li>
-							<li><span>REPLY</span></li>
-						</ul>
-						<div class="replies">
-							<svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
-							<span>View 3 replies</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</main>
-		<aside>
-			<div class="autoplay">
-				<div class="header">
-					<p>Up next</p>
-					<div class="autoplay-button">
-						<span>AUTOPLAY</span>
-						<div class="toggle">
-							<div class="toggle-bar"></div>
-							<div class="toggle-button"></div>
-						</div>
-					</div>
-				</div>
-				<div class="video-recommendation">
-					<a href="{{ url_for('video') }}"><img src="https://i.ytimg.com/vi/6pQgtmwNAW0/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLARZP6gBCcId61sxOJ-Hpu6DWvBkw"/></a>
-					<div>
-						<p class="title">pascebby pwease - mbmbam animatic</p>
-						<p class="user">access code x</p>
-						<p class="details">321K views &bull; 5 months ago</p>
-					</div>
-				</div>
-			</div>
-			<div class="video-recommendation">
-				<a href="{{ url_for('video') }}"><img src="https://i.ytimg.com/vi/N-kbFTirkyw/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLAIyHKPOk1EZ2I75JFmAu52tOfMrw"/></a>
-				<div>
-					<p class="title">Mix - A Case of the Mondays-MBMBaM Kinetic Typography</p>
-					<p class="user">YouTube</p>
-				</div>
-			</div>
-			<div class="video-recommendation">
-				<a href="{{ url_for('video') }}"><img src="https://i.ytimg.com/vi/yW7loIFO324/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBpBLQkSVXdqUtl8o9F6LGAuDXpxQ"/></a>
-				<div>
-					<p class="title">MBMBaM Anamatic: Worldwide Webster</p>
-					<p class="user">Sarah</p>
-					<p class="details">193K views &bull; 8 months ago</p>
-				</div>
-			</div>
-			<div class="video-recommendation">
-				<a href="{{ url_for('video') }}"><img src="https://i.ytimg.com/vi/iwJyP65k2AU/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLConmz1Zqogy2gLNXNbZUVS2y4prQ"/></a>
-				<div>
-					<p class="title">Griffin Mcelroy becoming increasingly bitter about Spore...</p>
-					<p class="user">Chase J</p>
-					<p class="details">1.2M views &bull; 3 years ago</p>
-				</div>
-			</div>
-			<div class="video-recommendation">
-				<a href="{{ url_for('video') }}"><img src="https://i.ytimg.com/vi/t1Ky_nWMwps/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLARRkH484TuoXTe3XxXsO4UbIPQ9w"/></a>
-				<div>
-					<p class="title">MBMBAM - A Lot of Vasectomy Chat</p>
-					<p class="user">Vetondd</p>
-					<p class="details">77K views &bull; 9 months ago</p>
-				</div>
-			</div>
-			<div class="video-recommendation">
-				<a href="{{ url_for('video') }}"><img src="https://i.ytimg.com/vi/UR2USlkMMyQ/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLCuQ-qTDlg71BoD-1RnK3Y44Z7fxA"/></a>
-				<div>
-					<p class="title">MBMBAM Typography - Notes to God</p>
-					<p class="user">Jenywlfersn</p>
-					<p class="details">129K views &bull; 4 months ago</p>
-				</div>
-			</div>
-			<div class="video-recommendation">
-				<a href="{{ url_for('video') }}"><img src="https://i.ytimg.com/vi/GSOo84fAdsE/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLBwJRieuLwi5DHRG1MCPvbQYRCQnw"/></a>
-				<div>
-					<p class="title">Monster Factory | Making a physical manifestation of the...</p>
-					<p class="user">The McElroy Family</p>
-					<p class="details">361K views &bull; 4 months ago</p>
-				</div>
-			</div>
-			<div class="video-recommendation">
-				<a href="{{ url_for('video') }}"><img src="https://i.ytimg.com/vi/OT5mva_bFQg/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAVm2TkWrJ2ZjUMrlz_jzpMc0FJRA"/></a>
-				<div>
-					<p class="title">The McElroys Go on a Ghost Tour</p>
-					<p class="user">The McElroy Family</p>
-					<p class="details">450K views &bull; 1 year ago</p>
-				</div>
-			</div>
-			<div class="video-recommendation">
-				<a href="{{ url_for('video') }}"><img src="https://i.ytimg.com/vi/GT98wwQ-5G4/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLDs37w8rmcTCUCBPyRK_IjKDGgs6Q"/></a>
-				<div>
-					<p class="title">MBMBAM: Raw Fettuccine</p>
-					<p class="user">Rebecca Reiter</p>
-					<p class="details">91K views &bull; 1 year ago</p>
-				</div>
-			</div>
-			<div class="video-recommendation">
-				<a href="{{ url_for('video') }}"><img src="https://i.ytimg.com/vi/LdFkwEVtEzg/hqdefault.jpg?sqp=-oaymwEYCKgBEF5IVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLAc_SeDSjFrdqzguruTP68FUjU4kg"/></a>
-				<div>
-					<p class="title">2:Justin and Griffin laughing at their own jokes in Monster...</p>
-					<p class="user">Chase Jada</p>
-					<p class="details">428K views &bull; 2 years ago</p>
-				</div>
-			</div>
-		</aside>
-	</div>
-</body>
-</html>
+    {% endfor %}
+
+    <script>
+        function changeVideo(newSource) {
+            document.getElementById('main-video').src = newSource;
+            document.getElementById('main-video').load();
+            document.getElementById('main-video').play();
+        }
+    </script>
+{% endblock %}

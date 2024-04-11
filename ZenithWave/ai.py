@@ -6,7 +6,7 @@ $ pip install google-generativeai
 
 import google.generativeai as genai
 
-genai.configure(api_key="")
+genai.configure(api_key="AIzaSyBpIq4BbMzWUlqs7z6NJcM3n72fubLELWY")
 
 # Set up the model
 generation_config = {
@@ -43,4 +43,6 @@ convo = model.start_chat(history=[
 ])
 
 convo.send_message("essay on ai")
-print(convo.last.text)
+print("""Generated text:
+{}
+""".format(convo.last.text))
