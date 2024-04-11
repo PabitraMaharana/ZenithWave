@@ -1,0 +1,46 @@
+{% extends "videopage/base.html" %}
+
+{% block content %}
+    <video controls id="main-video" style="width: 100%;">
+        <source src="../../static/uploads/Valorant 2024.03.17 - 00.10.39.02.DVR.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+{% endblock %}
+
+{% block uservideodata %} 
+    <p class="name">{{user.username}}</p>
+    <p class="subscribers">409 subscribers</p>
+    <p class="description">
+        Justin has a case of the Mondays.
+        <br />
+        <br />Audio from My Brother, My Brother and Me Episode 220: Pissbeards and Pooh Corner
+    </p>
+    <p class="show-more">SHOW MORE</p>
+    <button class="subscribe">SUBSCRIBE</button>
+{% endblock %}
+
+{% block videocontent %} 
+    {% for file in video_files %}
+        <div class="video-recommendation">
+            <a href="javascript:void(0);" onclick="changeVideo('{{ url_for('static', filename='uploads/' + file) }}')">
+                <video style="width: 100%;" >
+                    <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </a>
+            <div>
+                <p class="title">{{file}}</p>
+                <p class="user">{{user.username}}</p>
+                <p class="details">321K views &bull; 5 months ago</p>
+            </div>
+        </div>
+    {% endfor %}
+
+    <script>
+        function changeVideo(newSource) {
+            document.getElementById('main-video').src = newSource;
+            document.getElementById('main-video').load();
+            document.getElementById('main-video').play();
+        }
+    </script>
+{% endblock %}

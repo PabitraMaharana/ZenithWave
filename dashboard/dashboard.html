@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+
+  <title>Dashboard</title>
+
+    <link rel="canonical" href="https://codepen.io/olsiodobashi/pen/BLBdgr">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,600" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/jquery.selectric/1.10.1/selectric.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css'>
+  
+<style>
+@import "https://s3-us-west-2.amazonaws.com/s.cdpn.io/584938/dashboard.scss";
+body {
+  background-color: #1b2431;
+  color: #202020;
+  font-family: "Montserrat", "Helvetica", "Open Sans", "Arial";
+  font-size: 15px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+audio {
+    filter: sepia(20%) saturate(70%) grayscale(1) contrast(99%) invert(12%);
+    width: 200px;
+    height: 25px;
+}
+
+p,
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: #1b2431;
+}
+
+.sidebar {
+  background-color: #1b2431;
+  box-shadow: none;
+}
+.sidebar .nav-link {
+  border-left: 5px solid transparent;
+  color: #738297;
+  padding: 0.5rem 0.75rem;
+}
+.sidebar .nav-link:hover {
+  color: white;
+}
+.sidebar .nav-link.active {
+  border-left: 5px solid #738297;
+  color: white;
+}
+.sidebar .zmdi {
+  display: inline-block;
+  font-size: 1.35rem;
+  margin-right: 5px;
+  min-width: 25px;
+}
+
+.card-list {
+  width: 100%;
+}
+.card-list:before, .card-list:after {
+  content: " ";
+  display: table;
+}
+.card-list:after {
+  clear: both;
+}
+
+.card {
+  border-radius: 8px;
+  color: white;
+  padding: 10px;
+  position: relative;
+}
+.card .zmdi {
+  color: white;
+  font-size: 28px;
+  opacity: 0.3;
+  position: absolute;
+  right: 13px;
+  top: 13px;
+}
+.card .stat {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 8px;
+  margin-top: 25px;
+  padding: 10px 10px 0;
+  text-transform: uppercase;
+}
+.card .title {
+  display: inline-block;
+  font-size: 8px;
+  padding: 10px 10px 0;
+  text-transform: uppercase;
+}
+.card .value {
+  font-size: 28px;
+  padding: 0 10px;
+}
+.card.blue {
+  background-color: #2298F1;
+}
+.card.green {
+  background-color: #66B92E;
+}
+.card.orange {
+  background-color: #DA932C;
+}
+.card.red {
+  background-color: #D65B4A;
+}
+
+.projects {
+  background-color: #273142;
+  border: 1px solid #313D4F;
+  overflow-x: auto;
+  width: 100%;
+}
+.projects-inner {
+  border-radius: 4px;
+}
+
+.projects-header {
+  color: white;
+  padding: 22px;
+}
+.projects-header .count,
+.projects-header .title {
+  display: inline-block;
+}
+.projects-header .count {
+  color: #738297;
+}
+.projects-header .zmdi {
+  cursor: pointer;
+  float: right;
+  font-size: 16px;
+  margin: 5px 0;
+}
+.projects-header .title {
+  font-size: 21px;
+}
+.projects-header .title + .count {
+  margin-left: 5px;
+}
+
+.projects-table {
+  background: #273142;
+  width: 100%;
+}
+.projects-table td,
+.projects-table th {
+  color: white;
+  padding: 10px 22px;
+  vertical-align: middle;
+}
+.projects-table td p {
+  font-size: 12px;
+}
+.projects-table td p:last-of-type {
+  color: #738297;
+  font-size: 11px;
+}
+.projects-table th {
+  background-color: #313D4F;
+}
+.projects-table tr:hover {
+  background-color: #303d52;
+}
+.projects-table tr:not(:last-of-type) {
+  border-bottom: 1px solid #313D4F;
+}
+.projects-table .member figure,
+.projects-table .member .member-info {
+  display: inline-block;
+  vertical-align: top;
+}
+.projects-table .member figure + .member-info {
+  margin-left: 7px;
+}
+.projects-table .member img,video,audio {
+  height: 80px;
+  width: 150px;
+}
+.projects-table .status > form {
+  float: right;
+}
+.projects-table .status-text {
+  display: inline-block;
+  font-size: 12px;
+  margin: 11px 0;
+  padding-left: 20px;
+  position: relative;
+}
+.projects-table .status-text:before {
+  border: 3px solid;
+  border-radius: 50%;
+  content: "";
+  height: 14px;
+  left: 0;
+  position: absolute;
+  top: 1px;
+  width: 14px;
+}
+.projects-table .status-text.status-blue:before {
+  border-color: #1C93ED;
+}
+.projects-table .status-text.status-green:before {
+  border-color: #66B92E;
+}
+.projects-table .status-text.status-orange:before {
+  border-color: #DA932C;
+}
+.projects-table .status-text.status-red:before {
+  border-color: #D65B4A;
+}
+
+.selectric {
+  background-color: transparent;
+  border-color: #313D4F;
+  border-radius: 4px;
+}
+.selectric .label {
+  color: #738297;
+  line-height: 34px;
+  margin-right: 10px;
+  text-align: left;
+}
+.selectric-wrapper {
+  float: right;
+  width: 150px;
+}
+
+.chart {
+  border-radius: 3px;
+  border: 1px solid #313D4F;
+  color: white;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+}
+.chart canvas {
+  height: 400px;
+  margin: 20px 0;
+  width: 100%;
+}
+.chart .actions {
+  margin: 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.chart .actions span {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 20px;
+  margin: 5px;
+  padding: 4px;
+}
+.chart .actions .btn-link {
+  color: white;
+}
+.chart .actions .btn-link i {
+  font-size: 1.75rem;
+}
+.chart .title {
+  font-size: 18px;
+  margin: 0;
+  padding: 15px 0 5px;
+}
+.chart .title + .tagline {
+  margin-top: 10px;
+}
+.chart .tagline {
+  font-size: 12px;
+}
+
+.danger-item {
+  border-left: 4px solid #A84D43;
+}
+
+.zmdi {
+  line-height: 1;
+  vertical-align: middle;
+}
+.brand-image{
+  width: 50px;
+  height: auto;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  
+  
+</head>
+
+<body translate="no">
+  <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0">
+    <img src="{{url_for('static', filename = 'indexpage/images/acc.png')}}" class="brand-image">
+	<a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ url_for('homeMain') }}">{{ user.username }}</a>
+  
+	<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+	<ul class="navbar-nav px-3">
+		<li class="nav-item text-nowrap">
+			<a class="nav-link" href="{{ url_for('logout') }}">Sign out</a>
+		</li>
+	</ul>
+</nav>
+<div class="container-fluid">
+	<div class="row">
+		<nav class="col-md-2 d-none d-md-block sidebar">
+			<div class="sidebar-sticky" style="padding-top: 2rem;">
+				<ul class="nav flex-column">
+					<li class="nav-item">
+						<a class="nav-link active" href="#">
+                  <i class="zmdi zmdi-widgets"></i>
+                  Dashboard <span class="sr-only">(current)</span>
+                </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+                  <i class="zmdi zmdi-file-text"></i>
+                  Content
+                </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('fileupload') }}">
+                  <i class="zmdi zmdi-shopping-cart"></i>
+                  Upload
+                </a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('chatpage') }}">
+                  <i class="zmdi zmdi-accounts"></i>
+                  Zenith AI
+                </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ url_for('audio') }}">
+                  <i class="zmdi zmdi-chart"></i>
+                  Beat Maker
+                </a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">
+                  <i class="zmdi zmdi-layers"></i>
+                  Integrations
+                </a>
+					</li>
+				</ul>
+
+			
+			</div>
+		</nav>
+		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 my-3">
+			<div class="card-list">
+				<div class="row">
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card blue">
+							<div class="title">all Content</div>
+							<i class="zmdi zmdi-upload"></i>
+							<div class="value">89</div>
+							<div class="stat"><b>13</b>% increase</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card green">
+							<div class="title">Channel Subscribers</div>
+							<i class="zmdi zmdi-upload"></i>
+							<div class="value">5,990</div>
+							<div class="stat"><b>4</b>% increase</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card orange">
+							<div class="title">total Earnings</div>
+							<i class="zmdi zmdi-download"></i>
+							<div class="value">$80,990</div>
+							<div class="stat"><b>13</b>% decrease</div>
+						</div>
+					</div>
+					<div class="col-12 col-md-6 col-lg-4 col-xl-3 mb-4">
+						<div class="card red">
+							<div class="title">Content this month</div>
+							<i class="zmdi zmdi-download"></i>
+							<div class="value">3</div>
+							<div class="stat"><b>13</b>% decrease</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+<div class="projects mb-4">
+  <div class="projects-inner">
+    <header class="projects-header">
+      <div class="title">Channel Content</div>
+      <div class="count">| 32 Projects</div>
+      <i class="zmdi zmdi-download"></i>
+    </header>
+    <table class="projects-table">
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Release</th>
+          <th>Name</th>
+          <th>Earnings</th>
+          <th>Visibility</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+
+      {% for file in files %}
+      <tr>
+        <td>
+          <p>{{ file }}</p>
+          <p>Description</p>
+        </td>
+        <td>
+          <p>17th Oct, 15</p>
+          <p class="text-danger">Published</p>
+        </td>
+
+        <td class="member">
+          <figure>
+
+            {% if file.endswith(('.mp4', '.webm', '.ogg')) %}
+            <video controls class="img-fluid">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/mp4">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/webm">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="video/ogg">
+                Your browser does not support the video tag.
+            </video>
+        {% elif file.endswith(('.mp3', '.wav', '.ogg')) %}
+            <audio controls class="img-fluid" style="height: 50px;">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="audio/mpeg">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="audio/wav">
+                <source src="{{ url_for('static', filename='uploads/' + file) }}" type="audio/ogg">
+                Your browser does not support the audio tag.
+            </audio>
+        {% else %}
+            <img src="{{ url_for('static', filename='uploads/' + file) }}" class="img-fluid">
+        {% endif %}
+            
+          </figure>
+        </td>
+        
+        <td>
+          <p>$4,670</p>
+          <p>Earned</p>
+        </td>
+        <td class="status">
+          <span id="status-text" class="status-text status-orange" >Public</span>
+        </td>
+        <td>
+          <form class="form" action="#" method="POST">
+            <select class="action-box" onchange="updateStatus(this)">
+              <option>Public</option>
+              <option>Edit</option>
+              <option>Private</option>
+              <option>Delete</option>
+            </select>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+</div>
+
+
+			<div class="chart-data">
+				<div class="row">
+					<div class="col-12 col-md-4">
+						<div class="chart radar-chart dark">
+							<div class="actions">
+								<button type="button" class="btn btn-link" 
+										  data-toggle="dropdown" 
+										  aria-haspopup="true" aria-expanded="false">
+									 <i class="zmdi zmdi-more-vert"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<button class="dropdown-item" type="button">Action</button>
+									<button class="dropdown-item" type="button">Another action</button>
+									<button class="dropdown-item" type="button">Something else here</button>
+								</div>
+							</div>
+							<h3 class="title">Content Type</h3>
+							<p class="tagline">Yearly</p>
+							<canvas height="400" id="radarChartDark"></canvas>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="chart bar-chart light">
+							<div class="actions">
+								<button type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									 <i class="zmdi zmdi-more-vert"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<button class="dropdown-item" type="button">Action</button>
+									<button class="dropdown-item" type="button">Another action</button>
+									<button class="dropdown-item" type="button">Something else here</button>
+								</div>
+							</div>
+							<h3 class="title">Monthly revenue</h3>
+							<p class="tagline">2015 (in thousands US$)</p>
+							<canvas height="400" id="barChartHDark"></canvas>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="chart doughnut-chart dark">
+							<div class="actions">
+								<button type="button" class="btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									 <i class="zmdi zmdi-more-vert"></i>
+								</button>
+								<div class="dropdown-menu dropdown-menu-right">
+									<button class="dropdown-item" type="button">Action</button>
+									<button class="dropdown-item" type="button">Another action</button>
+									<button class="dropdown-item" type="button">Something else here</button>
+								</div>
+							</div>
+							<h3 class="title">Viewers</h3>
+							<p class="tagline">2015</p>
+							<canvas height="400" id="doughnutChartDark"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+</div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+<script src='https://cdn.jsdelivr.net/jquery.selectric/1.10.1/jquery.selectric.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js'></script>
+
+      <script id="rendered-js" >
+"use strict";
+class Selectize {
+    constructor() {
+        this.init();
+    }
+    init() {
+        var initValue;
+        $('.action-box').selectric({
+            onInit: function (element) {
+                initValue = $(this).val();
+            },
+            onChange: function (element) {
+                if ($(this).val() !== initValue)
+                    $(element).parents('form').submit();
+            }
+        });
+    }
+}
+class Charts {
+    constructor() {
+        this.colors = ["#DB66AE", "#8185D6", "#89D9DF", "#E08886"];
+        this.tickColor = "#757681";
+        this.initRadar();
+        this.initBarHorizontal();
+        this.initDoughnut();
+    }
+    initRadar() {
+        var ctxD = $('#radarChartDark'), chartData = {
+            type: 'radar',
+            data: {
+                labels: ["Education", "Food", "Transport", "Drinks", "Other"],
+                datasets: [
+                    {
+                        label: "2014",
+                        backgroundColor: this.convertHex(this.colors[0], 20),
+                        borderColor: this.colors[0],
+                        borderWidth: 1,
+                        pointRadius: 2,
+                        data: [51, 67, 90, 31, 16],
+                    },
+                    {
+                        label: "2015",
+                        backgroundColor: this.convertHex(this.colors[1], 20),
+                        borderColor: this.colors[1],
+                        borderWidth: 1,
+                        pointRadius: 2,
+                        data: [75, 44, 19, 22, 43],
+                    },
+                    {
+                        label: "2015",
+                        backgroundColor: this.convertHex(this.colors[2], 20),
+                        borderColor: this.colors[2],
+                        borderWidth: 1,
+                        pointRadius: 2,
+                        data: [7, 14, 29, 82, 33]
+                    }
+                ]
+            },
+            options: {
+                scale: {
+                    pointLabels: {
+                        fontColor: this.tickColor
+                    },
+                    ticks: {
+                        display: false,
+                        stepSize: 25
+                    }
+                },
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        boxWidth: 11,
+                        fontColor: this.tickColor,
+                        fontSize: 11
+                    }
+                }
+            }
+        }, myDarkRadarChart = new Chart(ctxD, chartData);
+    }
+    initBarHorizontal() {
+        var ctxD = $("#barChartHDark"), chartData = {
+            type: 'horizontalBar',
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                datasets: [{
+                        data: [27, 59, 68, 26, 79, 55, 36, 43, 44, 30, 55, 64],
+                        backgroundColor: this.colors[0],
+                        hoverBackgroundColor: this.convertHex(this.colors[0], 70)
+                    },
+                    {
+                        data: [136, 23, 44, 30, 79, 55, 61, 94, 27, 59, 98, 91],
+                        backgroundColor: this.colors[1],
+                        hoverBackgroundColor: this.convertHex(this.colors[1], 70)
+                    },
+                    {
+                        data: [88, 31, 87, 61, 77, 27, 59, 58, 136, 26, 79, 85],
+                        backgroundColor: this.colors[2],
+                        hoverBackgroundColor: this.convertHex(this.colors[2], 70)
+                    }]
+            },
+            options: {
+                barThickness: 10,
+                scales: {
+                    xAxes: [{
+                            stacked: true,
+                            ticks: {
+                                fontColor: this.tickColor,
+                            },
+                            gridLines: {
+                                drawOnChartArea: false
+                            }
+                        }],
+                    yAxes: [{
+                            stacked: true,
+                            ticks: {
+                                fontColor: this.tickColor,
+                                min: 0,
+                                max: 175,
+                                stepSize: 25
+                            }
+                        }]
+                },
+                legend: {
+                    display: false
+                }
+            }
+        }, myDarkRadarChart = new Chart(ctxD, chartData);
+    }
+    initDoughnut() {
+        var ctxD = $('#doughnutChartDark'), chartData = {
+            type: 'doughnut',
+            data: {
+                labels: ["Brasil", "India", "China"],
+                datasets: [{
+                        data: [300, 50, 100],
+                        borderWidth: 0,
+                        backgroundColor: [
+                            this.convertHex(this.colors[0], 60),
+                            this.convertHex(this.colors[1], 60),
+                            this.convertHex(this.colors[2], 60),
+                        ],
+                        hoverBackgroundColor: [
+                            this.colors[0],
+                            this.colors[1],
+                            this.colors[2],
+                        ]
+                    }]
+            },
+            options: {
+                responsive: true,
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        boxWidth: 11,
+                        fontColor: this.tickColor,
+                        fontSize: 11
+                    }
+                }
+            }
+        }, myDarkRadarChart = new Chart(ctxD, chartData);
+    }
+    convertHex(hex, opacity) {
+        hex = hex.replace('#', '');
+        var r = parseInt(hex.substring(0, 2), 16);
+        var g = parseInt(hex.substring(2, 4), 16);
+        var b = parseInt(hex.substring(4, 6), 16);
+        var result = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity / 100 + ')';
+        return result;
+    }
+}
+new Selectize();
+new Charts();
+//# sourceURL=pen.js
+    </script>
+
+  
+</body>
+
+</html>
