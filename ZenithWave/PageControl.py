@@ -164,7 +164,7 @@ def chat():
 
 
 def get_Chat_response(text):
-    genai.configure(api_key="AIzaSyCqeH850ID6dD9VQiNfsxumOhjLyZ3OMls")
+    genai.configure(api_key="")
 
     # Set up the model
     generation_config = {
